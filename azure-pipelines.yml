@@ -19,7 +19,6 @@ steps:
 - script: |
     cd $(Agent.BuildDirectory)
     curl -s -L --user admin:coverity -o license.dat http://10.0.1.6:8080/downloadFile.htm?fn=license.dat
-    curl -s -L --user admin:coverity -o cov-analysis-linux64-2019.09.tar.gz http://10.0.1.6:8080/downloadFile.html?fn=cov-analysis-linux64-2019.09.tar.gz 
     ls -la
     
 
