@@ -19,7 +19,7 @@ steps:
 - script: |
     cd $(Agent.BuildDirectory)
     curl -s -L --user admin:$(COVERITY_AUTHKEY) -o license.dat $(COVERITY_URL)/downloadFile.htm?fn=license.dat
-    curl -s -L --user admin:$(COVERITY_AUTHKEY) $(COVERITY_URL)/downloadFile.html?fn=cov-analysis-linux64-2019.09.tar.gz | tar -xvzf -
+    curl -s -L --user admin:$(COVERITY_AUTHKEY) $(COVERITY_URL)/downloadFile.html?fn=cov-analysis-linux64-2019.09.tar.gz | tar -xvzf cov-analysis-linux64-2019.09.tar.gz
     mv cov-analysis-linux64-2019.09 cov-analysis
     cp license.dat ./cov-analysis/bin
 
