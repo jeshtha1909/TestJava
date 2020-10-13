@@ -18,8 +18,8 @@ pool:
 steps:
 - script: |
     cd $(Agent.BuildDirectory)
-    curl -s -L --user admin:$(COVERITY_AUTHKEY) -o license.dat $(COVERITY_URL)/downloadFile.htm?fn=license.dat
-    curl -s -L --user admin:$(COVERITY_AUTHKEY) $(COVERITY_URL)/downloadFile.html?fn=cov-analysis-linux64-2019.09.tar.gz | tar -xvzf cov-analysis-linux64-2019.09.tar.gz
+    curl -s -L --user admin:6cbf95e0f147564bba7611bab1971089 -o license.dat http://10.0.1.6:8080/downloadFile.htm?fn=license.dat
+    curl -s -L --user admin:6cbf95e0f147564bba7611bab1971089 http://10.0.1.6:8080/downloadFile.html?fn=cov-analysis-linux64-2019.09.tar.gz | tar -xvzf -
     mv cov-analysis-linux64-2019.09 cov-analysis
     cp license.dat ./cov-analysis/bin
 
