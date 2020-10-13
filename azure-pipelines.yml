@@ -3,15 +3,29 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+variables:
+  COVERITY_TOOL_HOME: $(Agent.BuildDirectory)/cov-analysis
+  MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
+  MAVEN_OPTS: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
+
 trigger:
 - master
+ 
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: |
+    cd $(Agent.BuildDirectory)
+    curl -s -L --user admin:$(COVERITY_AUTHKEY) -o license.dat $(COVERITY_URL)/downloadFile.htm?fn=license.dat
+    curl -s -L --user admin:$(COVERITY_AUTHKEY) $(COVERITY_URL)/downloadFile.html?fn=cov-analysis-linux64-2019.09.tar.gz | tar -xvzf -
+    mv cov-analysis-linux64-2019.09 cov-analysis
+    cp license.dat ./cov-analysis/bin
+
+  displayName: 'Coverity Installed'
+
+
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
