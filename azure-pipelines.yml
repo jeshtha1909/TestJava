@@ -19,8 +19,7 @@ steps:
 - script: |
     cd $(Agent.BuildDirectory)
     curl -s -L --user admin:coverity -o license.dat http://10.0.1.6:8080/downloadFile.htm?fn=license.dat
-    mkdir test
-    cp license.dat ./test 
+    cat license.dat 
     
 
   displayName: 'Coverity Installed'
