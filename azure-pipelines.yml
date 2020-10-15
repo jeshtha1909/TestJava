@@ -19,7 +19,9 @@ steps:
 - script: |
     cd $(Agent.BuildDirectory)
     curl -s -L --user admin:coveritty -o license.dat http://35.223.17.182:8080/downloadFile.htm?fn=license.dat
-    cat license.dat 
+    curl -s -L --user admin:coveritty http://35.223.17.182:8080/downloadFile.html?fn=cov-analysis-linux64-2020.06.tar.gz | tar -xvzf -
+    mv cov-analysis-linux64-2020.06 cov-analysis
+    cp license.dat ./cov-analysis/bin
     
 
   displayName: 'Coverity Installed'
