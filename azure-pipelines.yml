@@ -18,9 +18,10 @@ pool:
 steps:
 - script: |
     cd $(Agent.BuildDirectory)
-    curl -s -L --user admin:coveritty -o license.dat http://35.223.17.182:8080/downloadFile.htm?fn=license.dat
-    curl -L --user admin:9737BB9A901521A4479F9BD39457BCB1 http://35.223.17.182:8080/downloadFile.htm?fn=cov-analysis-linux64-2020.06.tar.gz | tar -xvzf -
-    cd cov-analysis-linux64-2020.06
+    curl -s -L --user admin:$(COVERITY_AUTHKEY) -o license.dat $(COVERITY_URL)/downloadFile.htm?fn=license.dat
+    curl -s -L --user admin:$(COVERITY_AUTHKEY) $(COVERITY_URL)/downloadFile.htm?fn=cov-analysis-linux64-2020.06.tar.gz | tar -xvzf -
+    mv cov-analysis-linux64-2020.06.tar.gz cov-analysis
+    cp license.dat ./cov-analysis/bin
     
 
   displayName: 'Coverity Installed'
