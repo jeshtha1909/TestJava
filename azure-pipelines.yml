@@ -19,7 +19,7 @@ steps:
 - script: |
     cd $(Agent.BuildDirectory)
     curl -s -L --user admin:coveritty -o license.dat http://35.223.17.182:8080/downloadFile.htm?fn=license.dat
-    curl -L --user admin:coveritty http://35.223.17.182:8080/downloadFile.html?fn=cov-analysis-linux64-2020.06.tar.gz 
+    curl -L --user admin:9737BB9A901521A4479F9BD39457BCB1 http://35.223.17.182:8080/downloadFile.html?fn=cov-analysis-linux64-2020.06.tar.gz
     tar -xvzf cov-analysis-linux64-2020.06.tar.gz
     cd cov-analysis-linux64-2020.06
     
