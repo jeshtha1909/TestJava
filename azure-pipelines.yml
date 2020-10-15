@@ -26,7 +26,31 @@ steps:
 
   displayName: 'Coverity Installed'
 
+- script: $(COVERITY_TOOL_HOME)/bin/cov-configure --java
+  displayName: 'Configure java for coverity'
+ 
+- task: Cache@2
+  inputs:
+    key: 'maven | "$(Agent.OS)" | **/pom.xml'
+    restoreKeys: |
+      maven | "$(Agent.OS)"
+      maven
+    path: $(MAVEN_CACHE_FOLDER)
+  displayName: Cache Maven local repo
+    
 
+
+- task: synopsys-coverity@1
+  inputs:
+    coverityService: 'Coverity-Server'
+    projectName: 'Test'
+    streamName: 'Test-stream'
+    coverityBuildDirectory: '$(Build.Repository.LocalPath)'
+    buildCommand: 'mvn -Drat.skip=true -DskipTests=true package'
+    allowUntrusted: true
+    coverityRunType: 'buildanalyzecommit'
+    customCommandArgs: true
+    covAnalyzeArgs: '--all --webapp-security --webapp-security-aggressiveness-level high'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
