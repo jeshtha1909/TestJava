@@ -37,6 +37,9 @@ steps:
     coverityService: 'Coverity-Server'
     projectName: 'Test'
     streamName: 'Test-stream'
+    checkIssues: true
+    issueView: 'High Outstanding Issues'
+    issueStatus: 'unstable'
     coverityBuildDirectory: '$(Build.Repository.LocalPath)'
     buildCommand: 'mvn -Drat.skip=true -DskipTests=true package'
     allowUntrusted: true
